@@ -1,4 +1,4 @@
-package com.icure.utils
+package com.cardinal.utils
 
 import com.icure.sdk.model.Code
 import com.icure.sdk.model.Contact
@@ -7,7 +7,6 @@ import com.icure.sdk.model.HealthElement
 import com.icure.sdk.model.HealthcareParty
 import com.icure.sdk.model.Patient
 import com.icure.sdk.model.embed.Service
-import kotlin.math.max
 
 fun printLine(line: String, maxLen: Int) {
 	println("| $line${" ".repeat(maxLen-line.length+1)}|")

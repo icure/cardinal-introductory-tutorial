@@ -1,13 +1,13 @@
 package com.icure
 
-import com.icure.modules.createConsultation
-import com.icure.modules.createPatient
-import com.icure.modules.manageCodification
-import com.icure.modules.searchPatientsContactsServices
-import com.icure.modules.shareWithHcp
-import com.icure.modules.shareWithPatient
+import com.cardinal.modules.createConsultation
+import com.cardinal.modules.createPatient
+import com.cardinal.modules.manageCodification
+import com.cardinal.modules.searchPatientsContactsServices
+import com.cardinal.modules.shareWithHcp
+import com.cardinal.modules.shareWithPatient
 import com.icure.sdk.IcureSdk
-import com.icure.sdk.createSdk
+import com.cardinal.sdk.createSdk
 import com.icure.sdk.utils.RequestStatusException
 import kotlin.system.exitProcess
 

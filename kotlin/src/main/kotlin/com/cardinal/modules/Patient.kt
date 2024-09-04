@@ -1,8 +1,8 @@
-package com.icure.modules
+package com.cardinal.modules
 
 import com.icure.sdk.IcureSdk
 import com.icure.sdk.model.DecryptedPatient
-import com.icure.utils.prettyPrint
+import com.cardinal.utils.prettyPrint
 import java.util.*
 
 suspend fun createPatient(sdk: IcureSdk) {
@@ -20,7 +20,7 @@ suspend fun createPatient(sdk: IcureSdk) {
 		val createdPatient = sdk.patient.createPatient(patientWithMetadata)
 		prettyPrint(createdPatient)
 
-		print("Date of birth: ")
+		print("Date of birth (YYYYMMDD): ")
 		val dateOfBirth = readln().toInt()
 		val patientWithBirth = createdPatient.copy(
 			dateOfBirth = dateOfBirth

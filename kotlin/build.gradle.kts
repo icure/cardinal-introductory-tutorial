@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation(group = "com.icure", name = "icure-sdk", version = "0.2.47")
+    implementation(group = "com.icure", name = "icure-sdk", version = "0.2.48")
     testImplementation(kotlin("test"))
 }
 

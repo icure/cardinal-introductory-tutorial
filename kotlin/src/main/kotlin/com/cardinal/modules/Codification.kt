@@ -1,4 +1,4 @@
-package com.icure.modules
+package com.cardinal.modules
 
 import com.icure.sdk.IcureSdk
 import com.icure.sdk.filters.ServiceFilters
@@ -9,7 +9,7 @@ import com.icure.sdk.model.base.CodeStub
 import com.icure.sdk.model.embed.DecryptedContent
 import com.icure.sdk.model.embed.DecryptedService
 import com.icure.sdk.model.embed.Measure
-import com.icure.utils.prettyPrint
+import com.cardinal.utils.prettyPrint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -119,7 +119,7 @@ suspend fun manageCodification(sdk: IcureSdk) {
 			)
 		)
 
-		println("Result of searching by code: ${selectedCode.id}")
+		println("Result of searching Services by code: ${selectedCode.id}")
 		while (serviceIterator.hasNext()) {
 			val service = serviceIterator.next(1).first()
 			prettyPrint(service)

@@ -1,4 +1,4 @@
-package com.icure.modules
+package com.cardinal.modules
 
 import com.icure.sdk.IcureSdk
 import com.icure.sdk.filters.ContactFilters
@@ -6,7 +6,7 @@ import com.icure.sdk.filters.PatientFilters
 import com.icure.sdk.filters.ServiceFilters
 import com.icure.sdk.model.Patient
 import com.icure.sdk.model.base.Identifier
-import com.icure.utils.prettyPrint
+import com.cardinal.utils.prettyPrint
 
 suspend fun searchPatientsContactsServices(sdk: IcureSdk) {
 	try {

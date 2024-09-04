@@ -1,4 +1,4 @@
-package com.icure.modules
+package com.cardinal.modules
 
 import com.icure.sdk.IcureSdk
 import com.icure.sdk.model.DecryptedContact
@@ -12,7 +12,7 @@ import com.icure.sdk.model.embed.DecryptedSubContact
 import com.icure.sdk.model.embed.DocumentType
 import com.icure.sdk.model.embed.Measure
 import com.icure.sdk.model.embed.TimeSeries
-import com.icure.utils.prettyPrint
+import com.cardinal.utils.prettyPrint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.UUID
@@ -47,7 +47,7 @@ suspend fun createConsultation(sdk: IcureSdk) {
 		prettyPrint(createdContact)
 
 		print("Register blood pressure? [y/N]: ")
-		val hasBloodPressure = readln().trim() == "y"
+		val hasBloodPressure = readln().trim().lowercase() == "y"
 		val contactWithBloodPressure = if (hasBloodPressure) {
 			println("Measuring blood pressure...")
 			val bloodPressureService = DecryptedService(
@@ -71,7 +71,7 @@ suspend fun createConsultation(sdk: IcureSdk) {
 		} else createdContact
 
 		print("Register heart rate? [y/N]: ")
-		val hasHeartRate = readln().trim() == "y"
+		val hasHeartRate = readln().trim().lowercase() == "y"
 		val contactWithECG = if(hasHeartRate) {
 			println("Measuring heart rate...")
 			val ecgSignal = List(10) { Random.nextInt(0, 100) / 100.0 }
@@ -95,7 +95,7 @@ suspend fun createConsultation(sdk: IcureSdk) {
 		} else contactWithBloodPressure
 
 		print("Register x-ray? [y/N]: ")
-		val hasXRay = readln().trim() == "y"
+		val hasXRay = readln().trim().lowercase() == "y"
 		val contactWithImage = if(hasXRay) {
 			println("Generating X Ray image...")
 			val document = DecryptedDocument(

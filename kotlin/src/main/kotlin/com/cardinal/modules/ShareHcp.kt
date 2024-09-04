@@ -1,12 +1,10 @@
-package com.icure.modules
+package com.cardinal.modules
 
 import com.icure.sdk.IcureSdk
-import com.icure.sdk.createSdk
-import com.icure.sdk.filters.HealthcarePartyFilters
+import com.cardinal.sdk.createSdk
 import com.icure.sdk.model.DecryptedDocument
-import com.icure.sdk.model.HealthcareParty
 import com.icure.sdk.model.embed.AccessLevel
-import com.icure.utils.prettyPrint
+import com.cardinal.utils.prettyPrint
 import java.util.*
 
 suspend fun shareWithHcp(sdk: IcureSdk) {

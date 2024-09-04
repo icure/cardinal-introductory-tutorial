@@ -38,4 +38,7 @@ bin/
 ### Mac OS ###
 .DS_Store
 
+### Internal
 **/scratch
+**/venv
+**/__pycache__

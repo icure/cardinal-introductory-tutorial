@@ -1,7 +1,7 @@
-package com.icure.modules
+package com.cardinal.modules
 
 import com.icure.sdk.IcureSdk
-import com.icure.sdk.createSdk
+import com.cardinal.sdk.createSdk
 import com.icure.sdk.crypto.entities.PatientShareOptions
 import com.icure.sdk.crypto.entities.ShareMetadataBehaviour
 import com.icure.sdk.model.DecryptedHealthElement
@@ -9,7 +9,7 @@ import com.icure.sdk.model.DecryptedPatient
 import com.icure.sdk.model.User
 import com.icure.sdk.model.embed.AccessLevel
 import com.icure.sdk.model.requests.RequestedPermission
-import com.icure.utils.prettyPrint
+import com.cardinal.utils.prettyPrint
 import java.util.*
 
 suspend fun shareWithPatient(sdk: IcureSdk) {

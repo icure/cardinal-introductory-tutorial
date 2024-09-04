@@ -1,5 +1,6 @@
-package com.icure.sdk
+package com.cardinal.sdk
 
+import com.icure.sdk.IcureSdk
 import com.icure.sdk.auth.UsernamePassword
 import com.icure.sdk.options.AuthenticationMethod
 import com.icure.sdk.storage.impl.FileStorageFacade
