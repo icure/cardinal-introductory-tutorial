@@ -1,17 +1,17 @@
-from icure import IcureSdk
-from icure.filters.ContactFilters import ContactFilters
-from icure.filters.PatientFilters import PatientFilters
-from icure.filters.ServiceFilters import ServiceFilters
-from icure.model import Identifier
+from cardinal_sdk import CardinalSdk
+from cardinal_sdk.filters import ContactFilters
+from cardinal_sdk.filters import PatientFilters
+from cardinal_sdk.filters import ServiceFilters
+from cardinal_sdk.model import Identifier
 from utils import pretty_print_contact, pretty_print_patient, pretty_print_service
 
 
-def search_patients_contacts_services(sdk: IcureSdk):
+def search_patients_contacts_services(sdk: CardinalSdk):
 	try:
 		name_to_search = input("Enter a name: ")
-		filterr = PatientFilters.by_name_for_self(name_to_search)
-		print(filterr.__dict__)
-		patient_iterator = sdk.patient.filter_patients_by_blocking(filterr)
+		patient_iterator = sdk.patient.filter_patients_by_blocking(
+			PatientFilters.by_name_for_self(name_to_search)
+		)
 
 		patient = None
 		while patient_iterator.has_next_blocking() and patient is None:

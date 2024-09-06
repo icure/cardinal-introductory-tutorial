@@ -1,13 +1,13 @@
 package com.cardinal.modules
 
-import com.icure.sdk.IcureSdk
 import com.cardinal.sdk.createSdk
-import com.icure.sdk.model.DecryptedDocument
-import com.icure.sdk.model.embed.AccessLevel
+import com.icure.cardinal.sdk.model.DecryptedDocument
+import com.icure.cardinal.sdk.model.embed.AccessLevel
 import com.cardinal.utils.prettyPrint
+import com.icure.cardinal.sdk.CardinalSdk
 import java.util.*
 
-suspend fun shareWithHcp(sdk: IcureSdk) {
+suspend fun shareWithHcp(sdk: CardinalSdk) {
 	try {
 		print("Login of the other hcp: ")
 		val username = readln().trim()

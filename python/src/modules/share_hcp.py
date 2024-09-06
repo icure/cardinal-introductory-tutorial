@@ -1,15 +1,15 @@
 import uuid
-from create_sdk import create_icure_sdk
-from icure import IcureSdk
-from icure.model import DecryptedDocument, SimpleShareResultDecryptedDocumentSuccess, AccessLevel
+from create_sdk import create_cardinal_sdk
+from cardinal_sdk import CardinalSdk
+from cardinal_sdk.model import DecryptedDocument, SimpleShareResultDecryptedDocumentSuccess, AccessLevel
 from utils import pretty_print_document
 
 
-def share_with_hcp(sdk: IcureSdk):
+def share_with_hcp(sdk: CardinalSdk):
 	try:
 		username = input("Login of the other hcp: ").strip()
 		other_password = input("Insert the password for this hcp: ")
-		other_sdk = create_icure_sdk(username, other_password)
+		other_sdk = create_cardinal_sdk(username, other_password)
 		other_hcp = other_sdk.healthcare_party.get_current_healthcare_party_blocking()
 
 		old_document_without_encryption_meta = DecryptedDocument(

@@ -1,5 +1,5 @@
-from create_sdk import create_icure_sdk
-from icure import IcureSdk
+from create_sdk import create_cardinal_sdk
+from cardinal_sdk import CardinalSdk
 from modules.codification import manage_codifications
 from modules.examination import manage_examination
 from modules.patient import manage_patient
@@ -8,11 +8,11 @@ from modules.share_hcp import share_with_hcp
 from modules.share_patient import share_with_patient
 
 
-def login() -> IcureSdk:
+def login() -> CardinalSdk:
     username = input("Username: ")
     password = input("Password: ")
     try:
-        return create_icure_sdk(username, password)
+        return create_cardinal_sdk(username, password)
     except Exception as e:
         print(f"Something went wrong: {e}")
         return login()

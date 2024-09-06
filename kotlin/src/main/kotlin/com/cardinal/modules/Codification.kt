@@ -1,32 +1,28 @@
 package com.cardinal.modules
 
-import com.icure.sdk.IcureSdk
-import com.icure.sdk.filters.ServiceFilters
-import com.icure.sdk.model.Code
-import com.icure.sdk.model.DecryptedContact
-import com.icure.sdk.model.DecryptedPatient
-import com.icure.sdk.model.base.CodeStub
-import com.icure.sdk.model.embed.DecryptedContent
-import com.icure.sdk.model.embed.DecryptedService
-import com.icure.sdk.model.embed.Measure
+import com.icure.cardinal.sdk.filters.ServiceFilters
+import com.icure.cardinal.sdk.model.Code
+import com.icure.cardinal.sdk.model.DecryptedContact
+import com.icure.cardinal.sdk.model.DecryptedPatient
+import com.icure.cardinal.sdk.model.base.CodeStub
+import com.icure.cardinal.sdk.model.embed.DecryptedContent
+import com.icure.cardinal.sdk.model.embed.DecryptedService
+import com.icure.cardinal.sdk.model.embed.Measure
 import com.cardinal.utils.prettyPrint
+import com.icure.cardinal.sdk.CardinalSdk
+import com.icure.cardinal.sdk.filters.CodeFilters
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.random.Random
 
-suspend fun manageCodification(sdk: IcureSdk) {
+suspend fun manageCodification(sdk: CardinalSdk) {
 	try {
 		val existing = sdk.code.getCodes(
 			listOf("INTERNAL|ANALYSIS|1", "SNOMED|45007003|1", "SNOMED|38341003|1", "SNOMED|2004005|1")
 		)
 
-		val snomedCodes = if(existing.isNotEmpty()) {
-			val internalCode = existing.first()
-			prettyPrint(internalCode)
-			val snomedCodes = existing.subList(1, existing.size)
-			snomedCodes
-		} else {
+		if(existing.isEmpty()) {
 			val internalCode = sdk.code.createCode(Code(
 				id = "INTERNAL|ANALYSIS|1",
 				type = "INTERNAL",
@@ -35,7 +31,7 @@ suspend fun manageCodification(sdk: IcureSdk) {
 				label = mapOf("en" to "Internal analysis code")
 			))
 			prettyPrint(internalCode)
-			val snomedCodes = sdk.code.createCodes(listOf(
+			sdk.code.createCodes(listOf(
 				Code(
 					id = "SNOMED|45007003|1",
 					type = "SNOMED",
@@ -58,16 +54,30 @@ suspend fun manageCodification(sdk: IcureSdk) {
 					label = mapOf("en" to "Normal blood pressure")
 				)
 			))
-			snomedCodes
 		}
 
-		val selectedCode = snomedCodes.firstNotNullOf { code ->
+		val codeIterator = sdk.code.filterCodesBy(
+			CodeFilters.byLanguageTypeLabelRegion(
+				language = "en",
+				label = "blood",
+				type = "SNOMED"
+			)
+		)
+
+		var selectedCode: Code? = null
+		while (codeIterator.hasNext() && selectedCode == null) {
+			val code = codeIterator.next(1).first()
 			prettyPrint(code)
 			print("Use this code? [y/N]: ")
 			val use = readln().trim().lowercase() == "y"
 			if (use) {
-				code
-			} else null
+				selectedCode = code
+			}
+		}
+
+		if (selectedCode == null) {
+			println("No code was selected")
+			return
 		}
 
 		val patient = sdk.patient.createPatient(

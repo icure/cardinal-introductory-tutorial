@@ -1,23 +1,21 @@
 import random
 import uuid
 from datetime import datetime
-from icure import IcureSdk
-from icure.filters.ServiceFilters import ServiceFilters
-from icure.model import Code, CodeStub, DecryptedContact, DecryptedContent, DecryptedPatient, DecryptedService, Measure
+from cardinal_sdk import CardinalSdk
+from cardinal_sdk.filters import CodeFilters
+from cardinal_sdk.filters import ServiceFilters
+from cardinal_sdk.model import Code, CodeStub, DecryptedContact, DecryptedContent, DecryptedPatient, DecryptedService, \
+	Measure
 from utils import pretty_print_code, pretty_print_contact, pretty_print_service
 
 
-def manage_codifications(sdk: IcureSdk):
+def manage_codifications(sdk: CardinalSdk):
 	try:
 		existing = sdk.code.get_codes_blocking(
 			["INTERNAL|ANALYSIS|1", "SNOMED|45007003|1", "SNOMED|38341003|1", "SNOMED|2004005|1"]
 		)
 
-		if len(existing) > 0:
-			internal_code = existing[0]
-			pretty_print_code(internal_code)
-			snomed_codes = existing[1:]
-		else:
+		if len(existing) == 0:
 			internal_code = sdk.code.create_code_blocking(
 				Code(
 					id="INTERNAL|ANALYSIS|1",
@@ -28,7 +26,7 @@ def manage_codifications(sdk: IcureSdk):
 				)
 			)
 			pretty_print_code(internal_code)
-			snomed_codes = sdk.code.create_codes_blocking(
+			sdk.code.create_codes_blocking(
 				Code(
 					id="SNOMED|45007003|1",
 					type="SNOMED",
@@ -52,8 +50,17 @@ def manage_codifications(sdk: IcureSdk):
 				)
 			)
 
+		code_iterator = sdk.code.filter_codes_by_blocking(
+			CodeFilters.by_language_type_label_region(
+				language="en",
+				label="blood",
+				type="SNOMED"
+			)
+		)
+
 		selected_code = None
-		for code in snomed_codes:
+		while selected_code is None and code_iterator.has_next_blocking():
+			code = code_iterator.next_blocking(1)[0]
 			pretty_print_code(code)
 			choice = input("Use this code [y/N]: ")
 			if choice.lower() == "y":

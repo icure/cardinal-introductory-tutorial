@@ -1,11 +1,11 @@
 package com.cardinal.modules
 
-import com.icure.sdk.IcureSdk
-import com.icure.sdk.model.DecryptedPatient
+import com.icure.cardinal.sdk.model.DecryptedPatient
 import com.cardinal.utils.prettyPrint
+import com.icure.cardinal.sdk.CardinalSdk
 import java.util.*
 
-suspend fun createPatient(sdk: IcureSdk) {
+suspend fun createPatient(sdk: CardinalSdk) {
 	try {
 		print("First name: ")
 		val firstName = readln()
@@ -28,7 +28,7 @@ suspend fun createPatient(sdk: IcureSdk) {
 		val updatedPatient = sdk.patient.modifyPatient(patientWithBirth)
 		prettyPrint(updatedPatient)
 
-		print("The retrieved patient is:")
+		println("The retrieved patient is:")
 		val retrievedPatient = sdk.patient.getPatient(updatedPatient.id)
 		prettyPrint(retrievedPatient)
 	} catch (e: Exception) {

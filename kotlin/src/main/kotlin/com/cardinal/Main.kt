@@ -1,4 +1,4 @@
-package com.icure
+package com.cardinal
 
 import com.cardinal.modules.createConsultation
 import com.cardinal.modules.createPatient
@@ -6,12 +6,12 @@ import com.cardinal.modules.manageCodification
 import com.cardinal.modules.searchPatientsContactsServices
 import com.cardinal.modules.shareWithHcp
 import com.cardinal.modules.shareWithPatient
-import com.icure.sdk.IcureSdk
 import com.cardinal.sdk.createSdk
-import com.icure.sdk.utils.RequestStatusException
+import com.icure.cardinal.sdk.CardinalSdk
+import com.icure.cardinal.sdk.utils.RequestStatusException
 import kotlin.system.exitProcess
 
-private suspend fun login(): IcureSdk {
+private suspend fun login(): CardinalSdk {
 	print("Login: ")
 	val username = readln().trim()
 	print("Password: ")

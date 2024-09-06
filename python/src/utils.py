@@ -1,4 +1,4 @@
-from icure.model import DecryptedPatient, HealthcareParty, DecryptedDocument, DecryptedHealthElement, Code, \
+from cardinal_sdk.model import DecryptedPatient, HealthcareParty, DecryptedDocument, DecryptedHealthElement, Code, \
     DecryptedContact, DecryptedService
 
 
@@ -23,19 +23,6 @@ def pretty_print_patient(patient: DecryptedPatient):
     print_line(rev, max_len)
     if patient.date_of_birth is not None:
         print_line(date_of_birth, max_len)
-    print_divider(max_len)
-
-
-def pretty_print_hcp(hcp: HealthcareParty):
-    id_ = f"id: {hcp.id}"
-    rev = f"rev: {hcp.rev or 'rev is missing'}"
-    name = f"{hcp.first_name} {hcp.last_name}"
-    max_len = max(len(id_), len(rev), len(name))
-    print_divider(max_len)
-    print_line(name, max_len)
-    print_divider(max_len)
-    print_line(id_, max_len)
-    print_line(rev, max_len)
     print_divider(max_len)
 
 

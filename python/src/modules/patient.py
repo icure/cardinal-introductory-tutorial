@@ -1,10 +1,10 @@
 import uuid
-from icure import IcureSdk
-from icure.model import DecryptedPatient
+from cardinal_sdk import CardinalSdk
+from cardinal_sdk.model import DecryptedPatient
 from utils import pretty_print_patient
 
 
-def manage_patient(sdk: IcureSdk):
+def manage_patient(sdk: CardinalSdk):
 	try:
 		first_name = input("First name: ")
 		last_name = input("Last name: ")

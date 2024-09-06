@@ -1,13 +1,13 @@
 import uuid
-from create_sdk import create_icure_sdk
-from icure import IcureSdk
-from icure.model import DecryptedPatient, User, PatientShareOptions, ShareMetadataBehaviour, RequestedPermission, \
-	SimpleShareResultDecryptedPatientSuccess, DecryptedHealthElement, SimpleShareResultDecryptedHealthElementSuccess, \
-	AccessLevel
+from create_sdk import create_cardinal_sdk
+from cardinal_sdk import CardinalSdk
+from cardinal_sdk.model import DecryptedPatient, User, PatientShareOptions, ShareMetadataBehaviour, \
+	RequestedPermission, SimpleShareResultDecryptedPatientSuccess, DecryptedHealthElement, \
+	SimpleShareResultDecryptedHealthElementSuccess, AccessLevel
 from utils import pretty_print_patient, pretty_print_health_element
 
 
-def share_with_patient(sdk: IcureSdk):
+def share_with_patient(sdk: CardinalSdk):
 	try:
 		new_patient = DecryptedPatient(
 			id=str(uuid.uuid4()),
@@ -26,7 +26,7 @@ def share_with_patient(sdk: IcureSdk):
 		created_user = sdk.user.create_user_blocking(patient_user)
 		login_token = sdk.user.get_token_blocking(created_user.id, "login")
 
-		create_icure_sdk(login, login_token)
+		create_cardinal_sdk(login, login_token)
 
 		patient_secret_ids = sdk.patient.get_secret_ids_of_blocking(created_patient)
 		patient_share_result = sdk.patient.share_with_blocking(
@@ -44,7 +44,7 @@ def share_with_patient(sdk: IcureSdk):
 
 		patient = patient_share_result.updated_entity
 
-		patient_sdk = create_icure_sdk(login, login_token)
+		patient_sdk = create_cardinal_sdk(login, login_token)
 
 		pretty_print_patient(patient_sdk.patient.get_patient_blocking(patient.id))
 

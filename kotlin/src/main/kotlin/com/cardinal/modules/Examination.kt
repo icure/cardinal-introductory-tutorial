@@ -1,24 +1,24 @@
 package com.cardinal.modules
 
-import com.icure.sdk.IcureSdk
-import com.icure.sdk.model.DecryptedContact
-import com.icure.sdk.model.DecryptedDocument
-import com.icure.sdk.model.DecryptedHealthElement
-import com.icure.sdk.model.DecryptedPatient
-import com.icure.sdk.model.base.Identifier
-import com.icure.sdk.model.embed.DecryptedContent
-import com.icure.sdk.model.embed.DecryptedService
-import com.icure.sdk.model.embed.DecryptedSubContact
-import com.icure.sdk.model.embed.DocumentType
-import com.icure.sdk.model.embed.Measure
-import com.icure.sdk.model.embed.TimeSeries
+import com.icure.cardinal.sdk.model.DecryptedContact
+import com.icure.cardinal.sdk.model.DecryptedDocument
+import com.icure.cardinal.sdk.model.DecryptedHealthElement
+import com.icure.cardinal.sdk.model.DecryptedPatient
+import com.icure.cardinal.sdk.model.base.Identifier
+import com.icure.cardinal.sdk.model.embed.DecryptedContent
+import com.icure.cardinal.sdk.model.embed.DecryptedService
+import com.icure.cardinal.sdk.model.embed.DecryptedSubContact
+import com.icure.cardinal.sdk.model.embed.DocumentType
+import com.icure.cardinal.sdk.model.embed.Measure
+import com.icure.cardinal.sdk.model.embed.TimeSeries
 import com.cardinal.utils.prettyPrint
+import com.icure.cardinal.sdk.CardinalSdk
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.UUID
 import kotlin.random.Random
 
-suspend fun createConsultation(sdk: IcureSdk) {
+suspend fun createConsultation(sdk: CardinalSdk) {
 	try {
 		print("Insert the id of a Patient (blank to create a new one): ")
 		val patientId = readlnOrNull()

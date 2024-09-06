@@ -2,13 +2,13 @@ import random
 import secrets
 import uuid
 from datetime import datetime
-from icure import IcureSdk
-from icure.model import DecryptedContact, DecryptedContent, DecryptedPatient, DecryptedService, Identifier, Measure, \
-	TimeSeries, DecryptedDocument, DocumentType, DecryptedHealthElement, DecryptedSubContact
+from cardinal_sdk import CardinalSdk
+from cardinal_sdk.model import DecryptedContact, DecryptedContent, DecryptedPatient, DecryptedService, Identifier, \
+	Measure, TimeSeries, DecryptedDocument, DocumentType, DecryptedHealthElement, DecryptedSubContact
 from utils import pretty_print_contact
 
 
-def manage_examination(sdk: IcureSdk):
+def manage_examination(sdk: CardinalSdk):
 	try:
 		patient_id = input("Insert the id of a Patient (blank to create a new one): ")
 		if len(patient_id) == 0:

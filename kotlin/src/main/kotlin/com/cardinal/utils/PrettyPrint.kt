@@ -1,12 +1,11 @@
 package com.cardinal.utils
 
-import com.icure.sdk.model.Code
-import com.icure.sdk.model.Contact
-import com.icure.sdk.model.Document
-import com.icure.sdk.model.HealthElement
-import com.icure.sdk.model.HealthcareParty
-import com.icure.sdk.model.Patient
-import com.icure.sdk.model.embed.Service
+import com.icure.cardinal.sdk.model.Code
+import com.icure.cardinal.sdk.model.Contact
+import com.icure.cardinal.sdk.model.Document
+import com.icure.cardinal.sdk.model.HealthElement
+import com.icure.cardinal.sdk.model.Patient
+import com.icure.cardinal.sdk.model.embed.Service
 
 fun printLine(line: String, maxLen: Int) {
 	println("| $line${" ".repeat(maxLen-line.length+1)}|")
@@ -30,19 +29,6 @@ fun prettyPrint(patient: Patient) {
 	patient.dateOfBirth?.also {
 		printLine(dateOfBirth, maxLen)
 	}
-	printDivider(maxLen)
-}
-
-fun prettyPrint(hcp: HealthcareParty) {
-	val id = "id: ${hcp.id}"
-	val rev = "rev: ${hcp.rev ?: "rev is missing"}"
-	val name = "${hcp.firstName} ${hcp.lastName}"
-	val maxLen = listOf(id, rev, name).maxOf { it.length }
-	printDivider(maxLen)
-	printLine(name, maxLen)
-	printDivider(maxLen)
-	printLine(id, maxLen)
-	printLine(rev, maxLen)
 	printDivider(maxLen)
 }
 

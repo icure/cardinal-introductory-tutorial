@@ -1,14 +1,14 @@
 package com.cardinal.modules
 
-import com.icure.sdk.IcureSdk
-import com.icure.sdk.filters.ContactFilters
-import com.icure.sdk.filters.PatientFilters
-import com.icure.sdk.filters.ServiceFilters
-import com.icure.sdk.model.Patient
-import com.icure.sdk.model.base.Identifier
+import com.icure.cardinal.sdk.filters.ContactFilters
+import com.icure.cardinal.sdk.filters.PatientFilters
+import com.icure.cardinal.sdk.filters.ServiceFilters
+import com.icure.cardinal.sdk.model.Patient
+import com.icure.cardinal.sdk.model.base.Identifier
 import com.cardinal.utils.prettyPrint
+import com.icure.cardinal.sdk.CardinalSdk
 
-suspend fun searchPatientsContactsServices(sdk: IcureSdk) {
+suspend fun searchPatientsContactsServices(sdk: CardinalSdk) {
 	try {
 		print("Enter a name: ")
 		val nameToSearch = readln()

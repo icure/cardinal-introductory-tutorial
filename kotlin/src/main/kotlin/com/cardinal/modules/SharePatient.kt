@@ -1,18 +1,18 @@
 package com.cardinal.modules
 
-import com.icure.sdk.IcureSdk
 import com.cardinal.sdk.createSdk
-import com.icure.sdk.crypto.entities.PatientShareOptions
-import com.icure.sdk.crypto.entities.ShareMetadataBehaviour
-import com.icure.sdk.model.DecryptedHealthElement
-import com.icure.sdk.model.DecryptedPatient
-import com.icure.sdk.model.User
-import com.icure.sdk.model.embed.AccessLevel
-import com.icure.sdk.model.requests.RequestedPermission
+import com.icure.cardinal.sdk.crypto.entities.PatientShareOptions
+import com.icure.cardinal.sdk.crypto.entities.ShareMetadataBehaviour
+import com.icure.cardinal.sdk.model.DecryptedHealthElement
+import com.icure.cardinal.sdk.model.DecryptedPatient
+import com.icure.cardinal.sdk.model.User
+import com.icure.cardinal.sdk.model.embed.AccessLevel
+import com.icure.cardinal.sdk.model.requests.RequestedPermission
 import com.cardinal.utils.prettyPrint
+import com.icure.cardinal.sdk.CardinalSdk
 import java.util.*
 
-suspend fun shareWithPatient(sdk: IcureSdk) {
+suspend fun shareWithPatient(sdk: CardinalSdk) {
 	try {
 		val newPatient = DecryptedPatient(
 			id = UUID.randomUUID().toString(),

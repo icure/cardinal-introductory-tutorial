@@ -1,14 +1,14 @@
-from icure import IcureSdk
-from icure.authentication.AuthenticationMethod import UsernamePassword
-from icure.storage.StorageFacadeOptions import FileSystemStorage
+from cardinal_sdk import CardinalSdk
+from cardinal_sdk.authentication.AuthenticationMethod import UsernamePassword
+from cardinal_sdk.storage.StorageFacadeOptions import FileSystemStorage
 
-ICURE_URL = "https://api.icure.cloud"
+CARDINAL_URL = "https://api.icure.cloud"
 
 
-def create_icure_sdk(username: str, password: str) -> IcureSdk:
-    return IcureSdk(
+def create_cardinal_sdk(username: str, password: str) -> CardinalSdk:
+    return CardinalSdk(
         application_id=None,
-        baseurl=ICURE_URL,
+        baseurl=CARDINAL_URL,
         authentication_method=UsernamePassword(username, password),
         storage_facade=FileSystemStorage("./scratch/storage")
     )
