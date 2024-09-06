@@ -57,9 +57,9 @@ suspend fun searchPatientsContactsServices(sdk: CardinalSdk) {
 		}
 
 		val identifier = when(choice) {
-			0 -> Identifier(system = "icure", value = "bloodPressure")
-			1 -> Identifier(system = "icure", value = "ecg")
-			2 -> Identifier(system = "icure", value = "xRay")
+			0 -> Identifier(system = "cardinal", value = "bloodPressure")
+			1 -> Identifier(system = "cardinal", value = "ecg")
+			2 -> Identifier(system = "cardinal", value = "xRay")
 			else -> throw IllegalArgumentException("Invalid choice")
 		}
 

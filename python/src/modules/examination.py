@@ -40,7 +40,7 @@ def manage_examination(sdk: CardinalSdk):
 			blood_pressure_service = DecryptedService(
 				id=str(uuid.uuid4()),
 				label="Blood pressure",
-				identifier=[Identifier(system="icure", value="bloodPressure")],
+				identifier=[Identifier(system="cardinal", value="bloodPressure")],
 				content={
 					"en": DecryptedContent(
 						measure_value=Measure(
@@ -63,7 +63,7 @@ def manage_examination(sdk: CardinalSdk):
 			ecg_signal = [round(float(random.uniform(0, 1)), 2) for _ in range(10)]
 			heart_rate_service = DecryptedService(
 				id=str(uuid.uuid4()),
-				identifier=[Identifier(system="icure", value="ecg")],
+				identifier=[Identifier(system="cardinal", value="ecg")],
 				label="Heart rate",
 				content={
 					"en": DecryptedContent(
@@ -97,7 +97,7 @@ def manage_examination(sdk: CardinalSdk):
 			x_ray_service = DecryptedService(
 				id=str(uuid.uuid4()),
 				label="X-Ray image",
-				identifier=[Identifier(system="icure", value="xRay")],
+				identifier=[Identifier(system="cardinal", value="xRay")],
 				content={
 					"en": DecryptedContent(
 						document_id=document_with_attachment.id

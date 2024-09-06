@@ -53,7 +53,7 @@ suspend fun createConsultation(sdk: CardinalSdk) {
 			val bloodPressureService = DecryptedService(
 				id = UUID.randomUUID().toString(),
 				label = "Blood pressure",
-				identifier = listOf(Identifier(system = "icure", value = "bloodPressure")),
+				identifier = listOf(Identifier(system = "cardinal", value = "bloodPressure")),
 				content = mapOf(
 					"en" to DecryptedContent(
 						measureValue = Measure(
@@ -77,7 +77,7 @@ suspend fun createConsultation(sdk: CardinalSdk) {
 			val ecgSignal = List(10) { Random.nextInt(0, 100) / 100.0 }
 			val heartRateService = DecryptedService(
 				id = UUID.randomUUID().toString(),
-				identifier = listOf(Identifier(system = "icure", value = "ecg")),
+				identifier = listOf(Identifier(system = "cardinal", value = "ecg")),
 				label = "Heart rate",
 				content = mapOf(
 					"en" to DecryptedContent(
@@ -114,7 +114,7 @@ suspend fun createConsultation(sdk: CardinalSdk) {
 			val xRayService = DecryptedService(
 				id = UUID.randomUUID().toString(),
 				label = "X-Ray image",
-				identifier = listOf(Identifier(system = "icure", value = "xRay")),
+				identifier = listOf(Identifier(system = "cardinal", value = "xRay")),
 				content = mapOf(
 					"en" to DecryptedContent(
 						documentId = documentWithAttachment.id

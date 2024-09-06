@@ -48,11 +48,11 @@ def search_patients_contacts_services(sdk: CardinalSdk):
 				choice = -1
 
 		if choice == 0:
-			identifier = Identifier(system="icure", value="bloodPressure")
+			identifier = Identifier(system="cardinal", value="bloodPressure")
 		elif choice == 1:
-			identifier = Identifier(system="icure", value="ecg")
+			identifier = Identifier(system="cardinal", value="ecg")
 		else:
-			identifier = Identifier(system="icure", value="xRay")
+			identifier = Identifier(system="cardinal", value="xRay")
 
 		service_iterator = sdk.contact.filter_services_by_blocking(
 			ServiceFilters.by_identifiers_for_self([identifier])
