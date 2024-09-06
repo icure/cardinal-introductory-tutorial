@@ -85,12 +85,12 @@ def manage_examination(sdk: CardinalSdk):
 				id=str(uuid.uuid4()),
 				document_type=DocumentType.Labresult
 			)
-			created_contact = sdk.document.create_document_blocking(
+			created_document = sdk.document.create_document_blocking(
 				sdk.document.with_encryption_metadata_blocking(document, None)
 			)
 			x_ray_image = bytearray(secrets.token_bytes(100))
 			document_with_attachment = sdk.document.encrypt_and_set_main_attachment_blocking(
-				document=created_contact,
+				document=created_document,
 				utis=["public.tiff"],
 				attachment=x_ray_image
 			)

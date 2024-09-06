@@ -40,5 +40,12 @@ bin/
 
 ### Internal
 **/scratch
+
+### Python
 **/venv
 **/__pycache__
+
+### TS/JS
+**/node_modules
+**/yarn.lock
+**/tsPackage

@@ -1,0 +1,15 @@
+{
+  "name": "cardinal-basic-tutorial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@icure/cardinal-sdk": "./tsPackage",
+    "@types/node": "^22.5.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4",
+    "uuid": "^10.0.0",
+    "yarn": "^1.22.22"
+  }
+}
