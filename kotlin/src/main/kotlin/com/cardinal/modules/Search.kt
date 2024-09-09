@@ -49,10 +49,10 @@ suspend fun searchPatientsContactsServices(sdk: CardinalSdk) {
 
 		var choice = -1
 		while (choice < 0 || choice >= 3) {
-			println("Make your choice")
 			println("0. blood pressure")
 			println("1. heart rate")
 			println("2. x ray")
+			print("Enter your choice: ")
 			choice = readln().trim().toIntOrNull() ?: 0
 		}
 

@@ -7,6 +7,6 @@ export async function createSdk(username: string, password: string): Promise<Car
 		undefined,
 		CARDINAL_URL,
 		new AuthenticationMethod.UsingCredentials.UsernamePassword(username, password),
-		StorageFacade.usingFileSystem("./scratch/storage")
+		StorageFacade.usingFileSystem("../scratch/storage")
 	)
 }

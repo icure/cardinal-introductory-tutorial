@@ -26,7 +26,7 @@ export function prettyPrintPatient(patient: Patient) {
 	printDivider(maxLen);
 }
 
-function prettyPrintDocument(document: Document) {
+export function prettyPrintDocument(document: Document) {
 	const id = `id: ${document.id}`;
 	const rev = `rev: ${document.rev || "rev is missing"}`;
 	const name = document.name;
@@ -40,7 +40,7 @@ function prettyPrintDocument(document: Document) {
 	printDivider(maxLen);
 }
 
-function prettyPrintHealthElement(healthElement: HealthElement) {
+export function prettyPrintHealthElement(healthElement: HealthElement) {
 	const id = `id: ${healthElement.id}`;
 	const rev = `rev: ${healthElement.rev || "rev is missing"}`;
 	const description = healthElement.descr;
@@ -54,7 +54,7 @@ function prettyPrintHealthElement(healthElement: HealthElement) {
 	printDivider(maxLen);
 }
 
-function prettyPrintCode(code: Code) {
+export function prettyPrintCode(code: Code) {
 	const label = `${code.label?.['en']} v${code.version}`;
 	const codeType = `Type: ${code.type}`;
 	const codeCode = `Code: ${code.code}`;
@@ -99,7 +99,7 @@ export function prettyPrintContact(contact: Contact) {
 	}
 }
 
-function prettyPrintService(service: Service) {
+export function prettyPrintService(service: Service) {
 	const id = `id: ${service.id}`;
 	const content = contentOf(service);
 	const tags = `Tags: ${service.tags.map(tag => tag.id || "").join(", ")}`;

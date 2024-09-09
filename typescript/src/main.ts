@@ -3,6 +3,10 @@ import {createSdk} from "./create_sdk.mjs";
 import {readLn, rl} from "./utils/read.mjs";
 import {createPatient} from "./modules/patient.mjs";
 import {createExamination} from "./modules/examination.mjs";
+import {searchPatientsContactsServices} from "./modules/search.mjs";
+import {shareWithHcp} from "./modules/shareHcp.mjs";
+import {shareWithPatient} from "./modules/sharePatient.mjs";
+import {manageCodifications} from "./modules/codification.mjs";
 
 async function login(): Promise<CardinalSdk> {
 	const username = await readLn("Login: ")
@@ -36,6 +40,18 @@ const main = async () => {
 				break
 			case 2:
 				await createExamination(sdk)
+				break
+			case 3:
+				await searchPatientsContactsServices(sdk)
+				break
+			case 4:
+				await shareWithHcp(sdk)
+				break
+			case 5:
+				await shareWithPatient(sdk)
+				break
+			case 6:
+				await manageCodifications(sdk)
 				break
 			default:
 				console.log(`Unknown option: ${input}`)
