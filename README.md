@@ -12,7 +12,7 @@ It showcases several self-contained use cases that highlight the main features o
 The tutorial code is available in Kotlin, Python, and TypeScript. Below you will find instructions for running the code 
 in all three languages. For further explanations and examples, check the [Cardinal documentation](TODO).
 
-## Executing the Tutorial in Kotlin
+## Launching the Tutorial in Kotlin
 
 To run the tutorial in Kotlin, clone this repository:
 
@@ -22,7 +22,7 @@ git clone https://github.com/icure/cardinal-introductory-tutorial.git
 
 Then, open the folder in IntelliJ and run the [main function](https://github.com/icure/cardinal-introductory-tutorial/blob/main/kotlin/src/main/kotlin/com/cardinal/Main.kt)
 
-## Executing the Tutorial in Python
+## Launching the Tutorial in Python
 
 To run the tutorial in Python, clone this repository:
 
@@ -52,7 +52,7 @@ Finally, run the example Python code.
 python src/main.py
 ```
 
-## Executing the Tutorial in Typescript
+## Launching the Tutorial in Typescript
 
 To run the tutorial in Typescript, clone this repository:
 
