@@ -49,3 +49,4 @@ bin/
 **/node_modules
 **/yarn.lock
 **/tsPackage
+**/yarn-error.log
