@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@icure/cardinal-sdk": "./tsPackage",
+    "@icure/cardinal-sdk": "^1.0.0-RC.1",
     "@types/node": "^22.5.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
