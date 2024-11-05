@@ -2,8 +2,7 @@ import uuid
 from create_sdk import create_cardinal_sdk
 from cardinal_sdk import CardinalSdk
 from cardinal_sdk.model import DecryptedPatient, User, PatientShareOptions, ShareMetadataBehaviour, \
-	RequestedPermission, SimpleShareResultDecryptedPatientSuccess, DecryptedHealthElement, \
-	SimpleShareResultDecryptedHealthElementSuccess, AccessLevel
+	RequestedPermission, DecryptedHealthElement, AccessLevel, SecretIdShareOptionsAllAvailable
 from utils import pretty_print_patient, pretty_print_health_element
 
 
@@ -28,21 +27,15 @@ def share_with_patient(sdk: CardinalSdk):
 
 		create_cardinal_sdk(login, login_token)
 
-		patient_secret_ids = sdk.patient.get_secret_ids_of_blocking(created_patient)
-		patient_share_result = sdk.patient.share_with_blocking(
+		patient = sdk.patient.share_with_blocking(
 			delegate_id=created_patient.id,
 			patient=created_patient,
 			options=PatientShareOptions(
-				share_secret_ids=patient_secret_ids,
+				share_secret_ids=SecretIdShareOptionsAllAvailable(True),
 				share_encryption_key=ShareMetadataBehaviour.IfAvailable,
 				requested_permissions=RequestedPermission.MaxWrite
 			)
 		)
-
-		if isinstance(patient_share_result, SimpleShareResultDecryptedPatientSuccess):
-			print("Successfully shared patient")
-
-		patient = patient_share_result.updated_entity
 
 		patient_sdk = create_cardinal_sdk(login, login_token)
 
@@ -60,13 +53,10 @@ def share_with_patient(sdk: CardinalSdk):
 		except Exception as e:
 			print(f"This means the patient cannot get this health element -> {e}")
 
-		result = sdk.health_element.share_with_blocking(
+		sdk.health_element.share_with_blocking(
 			delegate_id=patient.id,
 			health_element=created_health_element
 		)
-
-		if isinstance(result, SimpleShareResultDecryptedHealthElementSuccess):
-			print(f"Successfully shared with patient id {patient.id}")
 
 		pretty_print_health_element(patient_sdk.health_element.get_health_element_blocking(created_health_element.id))
 

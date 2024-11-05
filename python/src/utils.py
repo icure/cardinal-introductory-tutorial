@@ -1,4 +1,4 @@
-from cardinal_sdk.model import DecryptedPatient, HealthcareParty, DecryptedDocument, DecryptedHealthElement, Code, \
+from cardinal_sdk.model import DecryptedPatient, DecryptedDocument, DecryptedHealthElement, Code, \
     DecryptedContact, DecryptedService
 
 

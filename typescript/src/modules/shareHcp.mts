@@ -1,4 +1,4 @@
-import {AccessLevel, CardinalSdk, DecryptedDocument, SimpleShareResult} from "@icure/cardinal-sdk";
+import {AccessLevel, CardinalSdk, DecryptedDocument} from "@icure/cardinal-sdk";
 import {readLn} from "../utils/read.mjs";
 import {createSdk} from "../create_sdk.mjs";
 import {v4 as uuid} from 'uuid';
@@ -27,14 +27,10 @@ export async function shareWithHcp(sdk: CardinalSdk) {
 			console.error("This means I am not authorized to read the document -> ", e)
 		}
 
-		const result = await sdk.document.shareWith(
+		await sdk.document.shareWith(
 			otherHcp.id,
 			oldDocument
 		)
-
-		if(result instanceof SimpleShareResult.Success) {
-			console.log("Successfully shared document")
-		}
 
 		const oldDocumentOtherHcp = await otherSdk.document.getDocument(oldDocument.id)
 		prettyPrintDocument(oldDocumentOtherHcp)

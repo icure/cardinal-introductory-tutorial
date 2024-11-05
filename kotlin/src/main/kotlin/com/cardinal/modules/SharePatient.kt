@@ -10,6 +10,7 @@ import com.icure.cardinal.sdk.model.embed.AccessLevel
 import com.icure.cardinal.sdk.model.requests.RequestedPermission
 import com.cardinal.utils.prettyPrint
 import com.icure.cardinal.sdk.CardinalSdk
+import com.icure.cardinal.sdk.crypto.entities.SecretIdShareOptions
 import java.util.*
 
 suspend fun shareWithPatient(sdk: CardinalSdk) {
@@ -33,22 +34,15 @@ suspend fun shareWithPatient(sdk: CardinalSdk) {
 
 		createSdk(login, loginToken)
 
-		val patientSecretIds = sdk.patient.getSecretIdsOf(createdPatient)
-		val patientShareResult = sdk.patient.shareWith(
+		val patient = sdk.patient.shareWith(
 			delegateId = createdPatient.id,
 			patient = createdPatient,
 			options = PatientShareOptions(
-				shareSecretIds = patientSecretIds,
+				shareSecretIds = SecretIdShareOptions.AllAvailable(true),
 				shareEncryptionKey = ShareMetadataBehaviour.IfAvailable,
 				requestedPermissions = RequestedPermission.MaxWrite
 			)
 		)
-
-		if (patientShareResult.isSuccess) {
-			println("Successfully shared patient")
-		}
-
-		val patient = patientShareResult.updatedEntityOrThrow()
 
 		val patientSdk = createSdk(login, loginToken)
 
@@ -67,14 +61,10 @@ suspend fun shareWithPatient(sdk: CardinalSdk) {
 			println("This means the patient cannot get this health element -> ${e.message}")
 		}
 
-		val result = sdk.healthElement.shareWith(
+		sdk.healthElement.shareWith(
 			delegateId = patient.id,
 			healthElement = createdHealthElement
 		)
-
-		if(result.isSuccess) {
-			println("Successfully shared with patient id ${patient.id}")
-		}
 
 		prettyPrint(patientSdk.healthElement.getHealthElement(createdHealthElement.id))
 

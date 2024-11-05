@@ -1,7 +1,7 @@
 import uuid
 from create_sdk import create_cardinal_sdk
 from cardinal_sdk import CardinalSdk
-from cardinal_sdk.model import DecryptedDocument, SimpleShareResultDecryptedDocumentSuccess, AccessLevel
+from cardinal_sdk.model import DecryptedDocument, AccessLevel
 from utils import pretty_print_document
 
 
@@ -26,13 +26,10 @@ def share_with_hcp(sdk: CardinalSdk):
 		except Exception as e:
 			print(f"This means I am not authorized to read the document -> {e}")
 
-		result = sdk.document.share_with_blocking(
+		sdk.document.share_with_blocking(
 			delegate_id=other_hcp.id,
 			document=old_document
 		)
-
-		if isinstance(result, SimpleShareResultDecryptedDocumentSuccess):
-			print("Successfully shared document")
 
 		old_document_other_hcp = other_sdk.document.get_document_blocking(old_document.id)
 		pretty_print_document(old_document_other_hcp)

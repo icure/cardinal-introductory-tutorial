@@ -3,8 +3,8 @@ import {
 	CardinalSdk, DecryptedHealthElement,
 	DecryptedPatient,
 	PatientShareOptions,
-	RequestedPermission,
-	ShareMetadataBehaviour, SimpleShareResult,
+	RequestedPermission, SecretIdShareOptions,
+	ShareMetadataBehaviour,
 	User
 } from "@icure/cardinal-sdk";
 import {v4 as uuid} from 'uuid';
@@ -32,22 +32,17 @@ export async function shareWithPatient(sdk: CardinalSdk) {
 
 		await createSdk(login, loginToken)
 
-		const patientSecretIds = await sdk.patient.getSecretIdsOf(createdPatient)
-		const patientShareResult = await sdk.patient.shareWith(
+		const patient = await sdk.patient.shareWith(
 			createdPatient.id,
 			createdPatient,
-			new PatientShareOptions({
-				shareSecretIds: patientSecretIds,
-				shareEncryptionKey: ShareMetadataBehaviour.IfAvailable,
-				requestedPermissions: RequestedPermission.MaxWrite
-			})
+			{
+				options: new PatientShareOptions({
+					shareSecretIds: new SecretIdShareOptions.AllAvailable({requireAtLeastOne: true}),
+					shareEncryptionKey: ShareMetadataBehaviour.IfAvailable,
+					requestedPermissions: RequestedPermission.MaxWrite
+				})
+			}
 		)
-
-		if (patientShareResult instanceof SimpleShareResult.Success) {
-			console.log("Successfully shared patient")
-		}
-
-		const patient = (patientShareResult as SimpleShareResult.Success<DecryptedPatient>).updatedEntity
 
 		const patientSdk = await createSdk(login, loginToken)
 
@@ -66,14 +61,10 @@ export async function shareWithPatient(sdk: CardinalSdk) {
 			console.error("This means the patient cannot get this health element", e)
 		}
 
-		const result = await sdk.healthElement.shareWith(
+		await sdk.healthElement.shareWith(
 			patient.id,
 			createdHealthElement
 		)
-
-		if(result instanceof SimpleShareResult.Success) {
-			console.log(`Successfully shared with patient id ${patient.id}`)
-		}
 
 		prettyPrintHealthElement(await patientSdk.healthElement.getHealthElement(createdHealthElement.id))
 

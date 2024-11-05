@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation(group = "com.icure", name = "cardinal-sdk")
+    implementation(group = "com.icure", name = "cardinal-sdk", version="1.0.0-RC.3")
     testImplementation(kotlin("test"))
 }
 

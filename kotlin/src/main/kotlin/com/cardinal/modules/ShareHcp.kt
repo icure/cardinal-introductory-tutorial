@@ -32,14 +32,10 @@ suspend fun shareWithHcp(sdk: CardinalSdk) {
 			println("This means I am not authorized to read the document -> ${e.message}")
 		}
 
-		val result = sdk.document.shareWith(
+		sdk.document.shareWith(
 			delegateId = otherHcp.id,
 			document = oldDocument
 		)
-
-		if(result.isSuccess) {
-			println("Successfully shared document")
-		}
 
 		val oldDocumentOtherHcp = otherSdk.document.getDocument(oldDocument.id)
 		prettyPrint(oldDocumentOtherHcp)

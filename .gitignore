@@ -50,3 +50,7 @@ bin/
 **/yarn.lock
 **/tsPackage
 **/yarn-error.log
+
+### Dart
+!dart/bin
+.dart_tool
