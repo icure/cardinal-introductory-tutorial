@@ -1,6 +1,6 @@
 # Cardinal Introductory Tutorial
 
-This repository contains the example code used in the [introductory tutorial](TODO).
+This repository contains the example code used in the [introductory tutorial](https://docs.icure.com/tutorial/basic/sdk-basic-tutorial).
 It showcases several self-contained use cases that highlight the main features of the Cardinal SDK, including:
 
 - Creating a patient.
@@ -10,7 +10,7 @@ It showcases several self-contained use cases that highlight the main features o
 - Utilizing codifications such as [SNOMED-CT](https://www.snomed.org/what-is-snomed-ct) and [LOINC](https://loinc.org/).
 
 The tutorial code is available in Kotlin, Python, and TypeScript. Below you will find instructions for running the code 
-in all three languages. For further explanations and examples, check the [Cardinal documentation](TODO).
+in all three languages. For further explanations and examples, check the [Cardinal documentation](https://docs.icure.com).
 
 ## Launching the Tutorial in Kotlin
 
